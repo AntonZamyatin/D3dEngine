@@ -6,7 +6,7 @@
 
 class Window
 {
-
+//test message
 private:
 	class Exception : public EngineException
 	{
