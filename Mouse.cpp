@@ -31,6 +31,11 @@ bool Mouse::RightIsPressed() const noexcept
 	return rightIsPressed;
 }
 
+bool Mouse::MidIsPressed() const noexcept
+{
+	return midIsPressed;
+}
+
 Mouse::Event Mouse::Read() noexcept
 {
 	if (buffer.size() > 0u)
@@ -102,6 +107,22 @@ void Mouse::OnRightReleased(int x, int y) noexcept
 	rightIsPressed = false;
 
 	buffer.push(Mouse::Event(Mouse::Event::Type::RRelease, *this));
+	TrimBuffer();
+}
+
+void Mouse::OnMidPressed(int x, int y) noexcept
+{
+	midIsPressed = true;
+
+	buffer.push(Mouse::Event(Mouse::Event::Type::MPress, *this));
+	TrimBuffer();
+}
+
+void Mouse::OnMidReleased(int x, int y) noexcept
+{
+	midIsPressed = false;
+
+	buffer.push(Mouse::Event(Mouse::Event::Type::MRelease, *this));
 	TrimBuffer();
 }
 

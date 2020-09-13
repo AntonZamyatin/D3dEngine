@@ -34,6 +34,12 @@ int CALLBACK WinMain(
 					woss << "LEFT";
 					wnd.SetTitle(woss.str());
 				}
+				if (e.GetType() == Mouse::Event::Type::MPress)
+				{
+					std::wostringstream woss;
+					woss << "MID";
+					wnd.SetTitle(woss.str());
+				}
 			}
 		}
 
