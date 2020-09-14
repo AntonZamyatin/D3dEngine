@@ -104,6 +104,28 @@ LRESULT WINAPI Window::HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM
 	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
+std::optional<int> Window::ProcessMessages()
+{
+	MSG msg;
+	//while queue has messages, remove and dispatch them
+	while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+	{
+		//check for quit because peekmessage does not signal this
+		if (msg.message == WM_QUIT)
+		{
+			//return optional wrapping int
+			return msg.wParam;
+		}
+
+		//Translate Messages post auxilliary WM_CHAR messages from key msgs
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
+	//return empty optional when not quiting
+	return {};
+}
+
 LRESULT WINAPI Window::HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) noexcept
 {
 	// retrieve ptr to window instance
