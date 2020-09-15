@@ -1,6 +1,7 @@
 #include "App.h"
 #include <sstream>
 #include <iomanip>
+#include <math.h>
 
 
 App::App()
@@ -33,5 +34,8 @@ void App::DoFrame()
 	woss << L"Времени прошло: " << std::setprecision(1)
 		 << std::fixed << t << L" секунд";
 	wnd.SetTitle(woss.str());
-
+	const float r = sin(timer.Peek()) / 2.0f + 0.5f;
+	const float g = sin(timer.Peek() + 3.14f/2) / 2.0f + 0.5f;
+	wnd.Gfx().ClearBuffer(r, g, 1.0f);
+	wnd.Gfx().EndFrame();
 }
