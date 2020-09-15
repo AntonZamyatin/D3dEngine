@@ -2,6 +2,7 @@
 #include "utils.h"
 #include "sstream"
 #include "App.h"
+#include <iostream>
 
 int CALLBACK WinMain(
 	HINSTANCE hInctance,
@@ -9,6 +10,7 @@ int CALLBACK WinMain(
 	LPSTR IpCmdLine,
 	int nCndShow)
 {
+
 	try
 	{
 		return App().Go();
