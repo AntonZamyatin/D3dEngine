@@ -55,7 +55,8 @@ public:
 	~Graphics() = default;
 	void EndFrame();
 	void ClearBuffer(float red, float green, float blue) noexcept;
-	void DrawTestTriangle();
+	void DrawTestCube(float angle, float x, float y);
+	//void DrawTestTriangle(float angle, float x, float y);
 private:
 //#ifndef NDEBUG
 	DxgiInfoManager infoManager;

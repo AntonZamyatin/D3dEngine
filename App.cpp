@@ -36,7 +36,10 @@ void App::DoFrame()
 	wnd.SetTitle(woss.str());
 	const float r = sin(timer.Peek()) / 2.0f + 0.5f;
 	const float g = sin(timer.Peek() + 3.14f/2) / 2.0f + 0.5f;
-	wnd.Gfx().ClearBuffer(r, g, 1.0f);
-	wnd.Gfx().DrawTestTriangle();
+	const float b = sin(timer.Peek() + 3.14f) / 2.0f + 0.5f;
+	wnd.Gfx().ClearBuffer(r, g, b);
+	wnd.Gfx().DrawTestCube(timer.Peek(),
+							   wnd.mouse.GetPosX() / 400.0f -1.0f, 
+							   wnd.mouse.GetPosY() / 300.0f -1.0f );
 	wnd.Gfx().EndFrame();
 }
